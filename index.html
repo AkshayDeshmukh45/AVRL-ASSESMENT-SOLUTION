@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Avrl assignment</title>
+    <style>
+        body {
+            padding: 100px;
+        }
+
+        .div-container {
+            width: 100%;
+            border: 1px solid black;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto auto;
+            padding: 25px;
+        }
+
+        .grid-item {
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 25px;
+        }
+
+        .div {
+            display: flex;
+            font-size: 1em;
+            justify-content: center;
+            padding: 5px;
+            margin: 10px;
+        }
+
+        #Start {
+            margin: 20px;
+            padding: 10px;
+            width: 100px;
+            color: white;
+            background-color: green;
+            cursor: pointer;
+        }
+
+        #Reset {
+            margin: 20px;
+            padding: 10px;
+            width: 100px;
+            color: white;
+            background-color: green;
+            cursor: pointer
+        }
+
+        #Start:hover,
+        #Reset:hover {
+            background-color: rgb(0, 255, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div-container">
+        <div class="grid-container">
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+        </div>
+        <div class="grid-container">
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+        </div>
+        <div class="grid-container">
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+        </div>
+        <div class="grid-container">
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+        </div>
+    </div>
+    <div class="div">
+        <button id="Start">Start</button> <button id="Reset">Reset</button>
+    </div>
+    <script type="text/javascript">
+        function setColors(pos, time, color) {
+            setTimeout(() => {
+                let box = document.querySelectorAll('.grid-item')[pos]
+                box.style.backgroundColor = color;
+                box.style.transition = 'background-color 1s ease'
+            }, time)
+        }
+
+        function handleStartClick() {
+            for (let i = 0; i < 8; i += 2) {
+                setColors(i, (i) * 1500, 'blue')
+            }
+            for (let i = 1; i < 8; i += 2) {
+                setColors(8 + i, (i - 1) * 1500 + 250, 'green')
+            }
+            for (let i = 0; i < 8; i += 2) {
+                setColors(16 + i, (i) * 1500 + 500, 'red')
+            }
+            for (let i = 1; i < 8; i += 2) {
+                setColors(24 + i, (i - 1) * 1500 + 750, 'yellow')
+            }
+        }
+
+        function handleResetClick() {
+            let boxes = document.querySelectorAll('.grid-item')
+            for (let i = 0; i < boxes.length; i++) {
+                boxes[i].style.backgroundColor = 'transparent';
+            }
+        }
+
+        let buttons = document.querySelectorAll('button')
+        buttons[0].addEventListener('click', handleStartClick)
+        buttons[1].addEventListener('click', handleResetClick)
+    </script>
+</body>
+
+</html>
